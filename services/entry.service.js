@@ -9,9 +9,18 @@ const create = async (data) => {
     }
 }
 
-const list = async () => {
+const list = async (userId) => {
+    console.log(`Entry service - list (userId:${userId})`);
     try{
-        return await Entry.find(); 
+
+        // Added conditions and if block
+        let conditions = {};
+        if(userId){
+            conditions = {user:userId}
+        }
+        const fetched = await Entry.find(conditions); // Added argument
+        console.log(`Entry service - ${fetched.length} entries found`) // Added logs
+        return fetched;
     }catch(e){
         throw e;
     }
@@ -31,7 +40,6 @@ const updateOne = async (condition, data) => {
         throw e;
     }
 }
-
 const deleteOne = async (id) => {
     try{
         const entry = await Entry.findById(id);

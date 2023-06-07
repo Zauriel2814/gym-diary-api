@@ -19,6 +19,11 @@ const EntrySchema = new Schema(
         intensityRating: {
             type: Number,
             required: false
+        },
+        user: { // add this property
+            type: Schema.Types.ObjectId,
+            ref: "User",
+            required: false
         }
     }
 );

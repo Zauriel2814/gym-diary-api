@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 
 // Import Models
 const Entry = require("./entry.model");
+const User = require("./user.model");
 
 // Config
 const mongoURI = process.env.MONGO_URL;
@@ -20,5 +21,6 @@ db.on("disconnected", () => console.log("mongo disconnected"));
 
 // Export models
 module.exports = {
-    Entry
+    Entry,
+    User,
 }

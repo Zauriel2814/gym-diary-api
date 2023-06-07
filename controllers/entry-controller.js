@@ -12,6 +12,9 @@ const data = [];
 // Refactor the `create` function
 const create = async (req, res) => {
     try{
+        if(req.userId){
+            req.body.user = req.userId;
+        }
         await createEntry(req.body);
         return res.sendStatus(httpStatus.CREATED);
     }catch(e){
@@ -23,7 +26,7 @@ const create = async (req, res) => {
 // Refactor the `readAll` function
 const readAll = async (req, res) => {
     try{
-        const data = await listEntry();
+        const data = await listEntry(req.userId);
         return data.length > 0 ? res.json(data) : res.sendStatus(httpStatus.NOT_FOUND);
     }catch(e){
         console.log("Failed to list entries", e);
