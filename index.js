@@ -1,1 +1,3 @@
-require("./routes"); // by default, it will import the index.js file
+require("dotenv").config(); // This must be at the top
+require("./routes");
+require("./models"); // Add this line
